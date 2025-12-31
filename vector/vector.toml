@@ -1,3 +1,4 @@
+# Sources = inputs, transforms = process, sinks = outputs.
 [sources.syslog]  
 type = "syslog"  
 address = "0.0.0.0:514"  
