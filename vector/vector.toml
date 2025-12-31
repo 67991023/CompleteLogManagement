@@ -1,0 +1,29 @@
+[sources.syslog]  
+type = "syslog"  
+address = "0.0.0.0:514"  
+mode = "udp"  
+
+[sources.http_ingest]  
+type = "http_server"  
+address = "0.0.0.0:8080"  
+
+[sources.file_batch]  
+type = "file"  
+include = ["/logs/*.json"]  
+
+[transforms.normalize]  
+type = "remap"  
+inputs = ["syslog", "http_ingest", "file_batch"]  
+source = '''  
+  .tenant = get_env_var("TENANT") ?? "default"  
+  .@timestamp = now()  
+  if .source == "syslog" { parsed, _ = parse_syslog(.message); . = merge(., parsed) }  
+  # Parsing for other sources (add more if needed)  
+'''  
+
+[sinks.opensearch]  
+type = "elasticsearch"  
+inputs = ["normalize"]  
+endpoints = ["http://opensearch:9200"]  
+index = "logs-{{ tenant }}-%Y.%m.%d"  
+healthcheck.enabled = true  
