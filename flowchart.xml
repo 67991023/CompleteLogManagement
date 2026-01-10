@@ -1,0 +1,90 @@
+<mxGraphModel dx="1244" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="2" value="Start: Log Sources&#10;(Syslog UDP/TCP 514, HTTP Ingest, API JSON POST, File Batch, CrowdStrike sample, AWS CloudTrail, Microsoft 365 Audit, Microsoft AD/Windows Security)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;" vertex="1" parent="1">
+      <mxGeometry x="100" y="50" width="200" height="80" as="geometry" />
+    </mxCell>
+    <mxCell id="3" value="Ingestion&#10;(Receive logs from multiple protocols: UDP/TCP, HTTP, File)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="350" y="50" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="4" value="Normalization &amp; Enrichment&#10;(Convert to central schema; Add geoip, reverse DNS if nice-to-have)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="550" y="50" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="5" value="Storage &amp; Index&#10;(Store in searchable DB like OpenSearch; Partition/index by tenant/date)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="750" y="50" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="6" value="Retention&#10;(Delete/rollover/partition after 7 days)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="950" y="50" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="7" value="Backend API&#10;(FastAPI: AuthN/AuthZ with JWT/RBAC, Query/Search, Alert rules)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="350" y="150" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="8" value="Multi-Tenant Separation&#10;(Separate data by tenant; RBAC per field/tenant if nice-to-have)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="550" y="150" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="9" value="Frontend Dashboard&#10;(React/UI: Show Top IP/User/EventType, Timeline, Filters by time/tenant/source)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="350" y="250" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="10" value="Alerting&#10;(Rule e.g., failed logins >3 in 5 min; Notify UI/Email/Webhook)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="550" y="250" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="11" value="Deployment Modes&#10;(Branch: Appliance - Docker Compose on single VM)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="350" y="350" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="12" value="Deployment Modes&#10;(Branch: SaaS/Cloud - VM/Container with public URL + TLS/HTTPS)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="550" y="350" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="13" value="Bonus/Nice-to-Have&#10;(Enrichment, CI/CD GitHub Actions, IaC Terraform/Helm, Unit Tests, Observability metrics/trace, Hardening)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="750" y="350" width="200" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="14" value="End: User Views/Alerts&#10;(Dashboard output, Alerts sent; Acceptance Checklist verified)" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="500" y="450" width="150" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="15" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="2" target="3">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="16" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="3" target="4">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="17" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="4" target="5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="18" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="5" target="6">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="19" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="6" target="7">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="20" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="6" target="8">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="21" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="7" target="9">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="22" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="8" target="10">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="23" value="Appliance Mode" style="endArrow=classic;html=1;" edge="1" parent="1" source="9" target="11">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="24" value="SaaS Mode" style="endArrow=classic;html=1;" edge="1" parent="1" source="9" target="12">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="25" value="Bonus Features" style="endArrow=classic;html=1;" edge="1" parent="1" source="9" target="13">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="26" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="10" target="14">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="27" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="11" target="14">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="28" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="12" target="14">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="29" value="" style="endArrow=classic;html=1;" edge="1" parent="1" source="13" target="14">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel>

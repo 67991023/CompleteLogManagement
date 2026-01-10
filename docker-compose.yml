@@ -1,0 +1,23 @@
+services:  
+  opensearch:  
+    image: opensearchproject/opensearch:3.4.0  
+    environment:  
+      - discovery.type=single-node  
+      - DISABLE_SECURITY_PLUGIN=true  
+    ports:  
+      - 9200:9200  
+    volumes:  
+      - opensearch-data:/usr/share/opensearch/data  
+
+  vector:  
+    image: timberio/vector:0.52.0-alpine  
+    volumes:  
+      - ./vector/vector.toml:/etc/vector/vector.toml:ro  
+      - ./logs:/logs  
+    ports:  
+      - 514:514/udp  
+      - 8080:8080  
+    depends_on:  
+      - opensearch  
+volumes:  
+  opensearch-data:  

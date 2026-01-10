@@ -1,4 +1,7 @@
-# Sources = inputs, transforms = process, sinks = outputs.
+# Sources = inputs, transforms = data management, sinks = outputs.
+# inputs consist of syslog(port 514), http server(http request ex.curl,json port 8080), file batch(specify the path for log file in the device)
+# transforms use VRL(Vector Remap Language) to modify data
+
 [sources.syslog]  
 type = "syslog"  
 address = "0.0.0.0:514"  
@@ -27,4 +30,4 @@ type = "elasticsearch"
 inputs = ["normalize"]  
 endpoints = ["http://opensearch:9200"]  
 index = "logs-{{ tenant }}-%Y.%m.%d"  
-healthcheck.enabled = true  
+healthcheck.enabled = true
