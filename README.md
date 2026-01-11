@@ -51,3 +51,7 @@ sudo systemctl enable --now nginx
     docker run --rm timberio/vector:0.52.0-alpine vector --version
 2. Test OpenSearch (log database):
     docker run -d -p 9200:9200 -e "discovery.type=single-node" -e "DISABLE_SECURITY_PLUGIN=true" opensearchproject/opensearch:3.4.0
+
+# Start running this project
+1. docker compose up -d (using docker-compose.yml)
+2. install requirements.txt : python3.11 -m pip install -r backend/requirements.txt

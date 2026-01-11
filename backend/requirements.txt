@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+opensearch-py
+pyjwt
+python-multipart
+apscheduler
+requests
